@@ -1,0 +1,40 @@
+<h1>{{ name }}</h1>
+
+<!-- definition list -->
+<dl>
+  <td>Nombre:</td><!-- table description -->
+  <dd>{{ name }}</dd>description
+
+  <td>Edad:</td>
+  <dd>{{ age }}</dd>
+
+  <td>Método:</td>
+  <dd>{{ getHeroDescription() }}</dd>
+
+  <td>Capitalizado:</td>
+  <dd>{{ cipitalizeName }}</dd>
+</dl>
+
+<button
+  *ngIf="name !== 'Spiderman'"
+  (click)="changeHero()"
+  class="btn btn-primary mx-2">
+  Cambiar nombre
+</button>
+
+<!-- el (*ngIf"expresion") es una propiedad para mantener
+una parte del código mientras la condicion sea verdadera
+o falsa -->
+<button
+  *ngIf="age !== 23"
+  (click)="changeAge()"
+  class="btn btn-primary mx-2">
+  Cambiar edad
+</button>
+
+<button
+  *ngIf="name == 'Spiderman' && age == 23"
+  (click)="resetForm()"
+  class="btn btn-primary mx-2">
+  Reset
+</button>

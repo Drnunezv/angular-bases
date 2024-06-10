@@ -1,0 +1,32 @@
+<h3>Listado de héroes</h3>
+
+
+<!-- se muestra sólo cuando ha borrado un héroe -->
+<div *ngIf="deletedHero else nothingWasDeleted">
+  <h3>Héroe borrado <small class="text-danger">{{ deletedHero }}</small></h3>
+</div>
+
+<!-- para mejorar la sintaxis del código y que no evalue
+la condición 2 veces angular creamos una referencia
+con el ng-template -->
+<!-- <h3 *ngIf="!deletedHero">No ha borrado nada.</h3> -->
+<ng-template #nothingWasDeleted>
+  <h3 >No ha borrado nada.</h3>
+</ng-template>
+
+<ul class="mt-2 list-group">
+  <!-- para crear el listado de héroes se necesita repetir la etiqeuta li
+  por lo tanto necesitamos un (*ngFor) -->
+  <li *ngFor="let name of heroNames" class="list-group-item">{{ name }}</li>
+</ul>
+
+<button
+  (click)="createHero()"
+  class="btn btn-primary mx-2">New Hero
+</button>
+
+<button
+  *ngIf="heroNames.length > 0"
+  (click)="deleteHero()"
+  class="btn btn-outline-danger mx-2">Delete Hero
+</button>
