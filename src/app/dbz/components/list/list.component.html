@@ -1,0 +1,41 @@
+<h4>Listado</h4>
+<ul class="list-group">
+  <!-- El *ngFor se usa para renderizar la lista desde el lis.ts -->
+  <!-- para crear una indice en la lista, agregamos en el ngFor (let i = index) -->
+   <!-- para usar las clases con el ngClass se debe definir antes en el ngFor -->
+
+  <li  *ngFor="
+  let character of characterList;
+  let i = index;
+  let isEven = even;
+  let isLast = last;
+  "
+
+    class="list-group-item d-flex justify-content-between align-items-center"
+    [ngClass]="{
+      'list-group-item-success': isEven,
+      'list-group-item-danger': isLast
+    }">
+
+    <div>
+      <span class="text-primary"> {{ i + 1 }}. </span>
+      <span>{{ character.name }}</span>
+      <strong> - Power:</strong>
+      <span> {{ character.power }} </span>
+
+    </div>
+
+    <!-- como tenemos la propiedad de id opocional, TS me marcará error si yo le coloco como obligatoria en el método,
+     entonces, una de las soluciones es decirle  TS que simpre la va a recibir colocando el (!) -->
+    <!-- <button (click)="onDeleteCharacter(character.id!)" class="btn btn-danger">X</button> -->
+
+    <!-- otra opcion sería, colocar como condición que si no la recibo mande un string vacío -->
+    <!-- <button (click)="onDeleteCharacter(character.id! || '' )" class="btn btn-danger">X</button> -->
+
+    <!-- la tercera opción recomenda es crear la condición en el método onDeleteCharacter(), donde le pasamos el id como
+     parámetro opcional y luego ponemos la condición que si el id no existe, entonces que no lo mande a llamar -->
+    <button (click)="onDeleteCharacter(character.id)" class="btn btn-danger">X</button>
+
+  </li>
+
+</ul>
